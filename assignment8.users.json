@@ -1,0 +1,74 @@
+[{
+  "_id": {
+    "$oid": "64bbb3416dd9a3ea3d7c1849"
+  },
+  "userName": "s3id",
+  "email": "mahmoudsaid.r22@gmail.com",
+  "password": "$2a$10$AIbVivBRzT1k/OkaJ2rX9OWUBNGQjhvjkcBQqPn8XtC93SUsqkvXi",
+  "age": 30,
+  "gender": "Male",
+  "phone": "U2FsdGVkX18AKjMbfDzDMwiLRDlSK2L/YSh7r/809n8=",
+  "assignedTasks": [],
+  "createdTasks": [
+    {
+      "$oid": "64bbc828599714eb2f5cc55a"
+    },
+    {
+      "$oid": "64bbc84d599714eb2f5cc560"
+    },
+    {
+      "$oid": "64bbc855599714eb2f5cc566"
+    },
+    {
+      "$oid": "64bbcf36b041329de976c934"
+    }
+  ],
+  "isOnline": true,
+  "deletedAt": null,
+  "confirmEmail": false,
+  "__v": 7
+},
+{
+  "_id": {
+    "$oid": "64bbbfd53fcbaff3389abe0e"
+  },
+  "userName": "s3id2",
+  "email": "mahmoudsaid.r222@gmail.com",
+  "password": "$2a$10$iBk3VaaJvo5aALLsHCCs/e7vqmwWc2pZFSjp4CPU1RQbWTbFDtoya",
+  "age": 30,
+  "gender": "Male",
+  "phone": "U2FsdGVkX18KdVARbznl4lVj9BsG2OMzEsWbqTfLCCs=",
+  "assignedTasks": [
+    {
+      "$oid": "64bbc84d599714eb2f5cc560"
+    },
+    {
+      "$oid": "64bbc855599714eb2f5cc566"
+    },
+    {
+      "$oid": "64bbcf36b041329de976c934"
+    }
+  ],
+  "createdTasks": [],
+  "isOnline": false,
+  "deletedAt": null,
+  "confirmEmail": true,
+  "__v": 7
+},
+{
+  "_id": {
+    "$oid": "64bbd5295732249a09d23a2b"
+  },
+  "userName": "s3id22",
+  "email": "mahmoudsaid.r2222@gmail.com",
+  "password": "$2a$10$bKP9h5sOR2zL7MukqDHndudpjXXrLJjjMu27rDfaJqvU.4E955MQa",
+  "age": 30,
+  "gender": "Male",
+  "phone": "U2FsdGVkX1/KkALNXsaKMhZ9UfOZCXBOxNCwVqmiAIU=",
+  "assignedTasks": [],
+  "createdTasks": [],
+  "isOnline": false,
+  "deletedAt": null,
+  "confirmEmail": true,
+  "__v": 1
+}]

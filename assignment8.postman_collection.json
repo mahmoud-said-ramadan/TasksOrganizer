@@ -1,0 +1,508 @@
+{
+	"info": {
+		"_postman_id": "f85be58f-a813-4ece-9729-ad1d825ceec0",
+		"name": "assignment8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27826583"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"s3id22\",\r\n    \"email\":\"mahmoudsaid.r2222@gmail.com\",\r\n    \"password\":\"Gnvghj6t5@\",\r\n    \"cPassword\":\"Gnvghj6t5@\",\r\n    \"age\":30,\r\n    \"gender\":\"Male\",\r\n    \"phone\":\"+201093630314\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/signUp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logIn",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\":\"s3id\",\r\n    \"password\":\"Gnvghj6t5@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/logIn",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"logIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "myTasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMzQxNmRkOWEzZWEzZDdjMTg0OSIsImlhdCI6MTY5MDAyMzA0NH0.D57I_IMrnpQ9mrn5cNzjxkEsvzxfajgL-zBX9NByM9o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/myTasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"myTasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMzQxNmRkOWEzZWEzZDdjMTg0OSIsImlhdCI6MTY5MDAyMjg4Nn0.gCEwE9sHHOCvT6LFFasblX7yoKTS7deWg_wzGCXUY1A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"EngAnas \",\r\n    \"age\":120\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/updateUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmIwNzMxODRiYzY2MGFkMjc1YzU3MCIsImlhdCI6MTY5MDAxODk4OH0.eqVtsF-iG-oszg5NR1NnP1EWiZJGp-oSoJEdXU8NM-k",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"gnvghj6t52\",\r\n    \"newPassword\":\"Gnvghj6t5@\",\r\n    \"cNewPassword\":\"Gnvghj6t5@\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/changePassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMDNmNTg2ZDI1YmJmODYzZDY4YSIsImlhdCI6MTY5MDAyMTk2OH0.teMvkRCugbmYdQlXzuDVEi779jnCQSJUH-9-iVyC_nA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/deleteUser/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"deleteUser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDeleteUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMzQxNmRkOWEzZWEzZDdjMTg0OSIsImlhdCI6MTY5MDAyMjg4Nn0.gCEwE9sHHOCvT6LFFasblX7yoKTS7deWg_wzGCXUY1A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/softDeleteUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"softDeleteUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logOut",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMzQxNmRkOWEzZWEzZDdjMTg0OSIsImlhdCI6MTY5MDAyMzA0NH0.D57I_IMrnpQ9mrn5cNzjxkEsvzxfajgL-zBX9NByM9o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/user/logOut",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"logOut"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "addTask",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMzQxNmRkOWEzZWEzZDdjMTg0OSIsImlhdCI6MTY5MDAyNTkwM30.03vfJTf1l7i7wO18aDYrVa51drndbMihVenJgy2ZVDo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"fgfdgfd fdgfd g task\",\r\n    \"description\":\"hgh h fgh gfh fghfgh j h gf hgfh fghfg\",\r\n    \"status\":\"Doing\",\r\n    \"assignTo\":\"mahmoudsaid.r222@gmail.com\",\r\n    \"deadline\":\"2023-07-24T12:30:00.000-04:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/task/addTask",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"task",
+								"addTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTask",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMzQxNmRkOWEzZWEzZDdjMTg0OSIsImlhdCI6MTY5MDAyNTkwM30.03vfJTf1l7i7wO18aDYrVa51drndbMihVenJgy2ZVDo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"taskId\":\"64bbc828599714eb2f5cc55a\",\r\n    \"title\":\"new update hghghhhhhhhhhhhhhhhhhhhhhhhhhhh task\",\r\n    \"description\":\" updated updated updated updatedupdated updated updated\",\r\n    \"status\":\"Doing\",\r\n    \"assignTo\":\"mahmoudsaid.r222@gmail.com\",\r\n    \"deadline\":\"2023-07-24T12:30:00.000-04:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/task/updateTask",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"task",
+								"updateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTask",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "kokoz eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InMzaWQiLCJpZCI6IjY0YmJiMzQxNmRkOWEzZWEzZDdjMTg0OSIsImlhdCI6MTY5MDAyNTkwM30.03vfJTf1l7i7wO18aDYrVa51drndbMihVenJgy2ZVDo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"taskId\":\"64bbd483d1d19eee85b499f1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/task/deleteTask",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"task",
+								"deleteTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "allTasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/task/allTasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"task",
+								"allTasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tasksOfOneUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/task/tasksOfOneUser/64bbb3416dd9a3ea3d7c1849",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"task",
+								"tasksOfOneUser",
+								"64bbb3416dd9a3ea3d7c1849"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lateTasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/task/lateTasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"task",
+								"lateTasks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
