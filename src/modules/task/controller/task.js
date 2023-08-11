@@ -4,7 +4,12 @@ import { asyncHandler } from "../../../utils/errorHandling.js";
 import { decrypt, decryptPhone } from "../../../encryption/encryption.js";
 
 const createTask = async (data) => {
-    return await new taskModel(data).save();
+    return await taskModel.create(data).then((createdUser) => {
+        console.log('New user created with ID:', createdUser._id);
+    })
+        .catch((err) => {
+            console.error('Error creating user:', err);
+        });
 }
 
 const getAllTasks = async () => {
@@ -45,20 +50,43 @@ const getLateTasks = async () => {
 
 export const addTask = asyncHandler(
     async (req, res, next) => {
+        console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+        console.log(req.body);
         const { title, description, status, assignTo, deadline } = req.body;
         const checkAssignTo = await userModel.findOne({ email: assignTo, deletedAt: null });
+        console.log(checkAssignTo);
+        console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+
         if (checkAssignTo) {
+            console.log("if=================");
             //Create A New Task
-            const saved = await createTask({ title, description, status, assignTo: checkAssignTo.id, deadline, userId: req.user._id });
+            const saved = await taskModel.create({ title, description, status, assignTo: checkAssignTo.id, deadline, userId: req.user._id });
             if (saved) {
+                console.log("saved=======================");
+                console.log(saved);
+
                 //Add The New Task To The tasks Arr Of Users <<RAM>>
                 checkAssignTo.assignedTasks.push(saved);
+                console.log("checkAssignTo=======================");
                 req.user.createdTasks.push(saved)
+                console.log("req.user.createdTasks=======================");
                 //Save The New Task To The tasks Arr Of Users <<DB>>
                 await req.user.save();
+                console.log("await saved=======================");
                 await checkAssignTo.save();
+                console.log("await saved=======================");
+
+                const savedWithoutAssignTo = saved.toObject();
+                delete savedWithoutAssignTo.assignTo;
+                const responseSaved = {
+                    ...savedWithoutAssignTo,
+                    assignTo: { email: checkAssignTo.email }
+                };
+                console.log(responseSaved);
+
                 return res.status(202).json({
                     message: "Done!",
+                    responseSaved,
                     status: { cause: 202 }
                 })
             }
@@ -70,6 +98,7 @@ export const addTask = asyncHandler(
 
 export const updateTask = asyncHandler(
     async (req, res, next) => {
+        console.log({ data: req.body });
         const { taskId, title, description, status, assignTo, deadline } = req.body;
         const checkAssignTo = await userModel.findOne({ email: assignTo, deletedAt: null, confirmEmail: true });
         if (checkAssignTo) {
@@ -80,17 +109,20 @@ export const updateTask = asyncHandler(
                 status,
                 assignTo: checkAssignTo._id,
                 deadline
-            });
+            }, { new: true }).populate({ path: 'assignTo', select: 'email' });
             if (task) {
+                console.log(task);
                 //remove The Task id From The tasks Arr Of Old User
-                await userModel.findByIdAndUpdate(task.assignTo, { $pull: { assignedTasks: taskId } })
+                //await userModel.findByIdAndUpdate(task.assignTo, { $pull: { assignedTasks: taskId } })
                 //Add The New Task id To The tasks Arr Of New User
-                if (!checkAssignTo.assignedTasks.some(task => task === task)) {
+                if (!checkAssignTo.assignedTasks.some(task => task === taskId)) {
                     checkAssignTo.assignedTasks.push(task);
+                    console.log("!if");
                     await checkAssignTo.save();
                 }
                 return res.status(202).json({
                     message: "Done!",
+                    task,
                     status: { cause: 202 }
                 })
             }
@@ -100,9 +132,30 @@ export const updateTask = asyncHandler(
     }
 )
 
+export const updateTaskStatus = asyncHandler(
+    async (req, res, next) => {
+        console.log("updateTaskStatus-----------");
+        console.log(req.body);
+        const { taskId, status } = req.body;
+        //update Task Status
+        const task = await taskModel.findOneAndUpdate({ _id: taskId, userId: req.user._id }, { status });
+        console.log("---------task");
+        console.log(task);
+        if (task) {
+            return res.status(202).json({
+                message: "Done!",
+                status: { cause: 202 }
+            })
+        }
+        return next(new Error("Fail To Update!, This Task Is NOT Exist! ", { cause: 404 }));
+    }
+)
+
 export const deleteTask = asyncHandler(
     async (req, res, next) => {
+        console.log(req.body);
         const { taskId } = req.body;
+
         const deleteTask = await taskModel.findOneAndDelete({ _id: taskId, userId: req.user._id });
         if (deleteTask) {
             const assign = await userModel.findByIdAndUpdate(

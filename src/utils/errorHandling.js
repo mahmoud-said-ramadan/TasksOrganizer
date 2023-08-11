@@ -9,7 +9,7 @@ export const asyncHandler = (fn)=>{
 
 
 export const globalErrorHandling = (error, req, res, next)=>{
-    console.log("globalErrorHandling");
+    console.log("globalErrorHandling", error, error.stack);
     return res.status(error.cause || 500).json({
         message: error.message,
         error,

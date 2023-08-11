@@ -7,6 +7,7 @@ const router = Router();
 
 
 router.put("/changePassword", validation(validators.changePassword), auth, userController.changePassword);
+router.get("/getUserData", auth, userController.getUserData);
 router.put("/updateUser", validation(validators.updateUser), auth, userController.updateUser);
 router.delete("/deleteUser", validation(validators.validAuthorization), auth, userController.deleteUser);
 router.put("/softDeleteUser", validation(validators.validAuthorization), auth, userController.softDeleteUser);

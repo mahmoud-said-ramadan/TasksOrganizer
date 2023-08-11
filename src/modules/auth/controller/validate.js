@@ -24,7 +24,6 @@ export const logIn = Joi.object({
     password: Joi.string().required()
 }).options({ allowUnknown: true }).required()
 
-
 export const changePassword = Joi.object({
     //body
     oldPassword: Joi.string().trim().required(),
@@ -65,6 +64,14 @@ export const updateTask = Joi.object({
     status: Joi.string().trim().valid('ToDo', 'Doing', 'Done').default('ToDo'),
     assignTo: Joi.string().trim().email({ minDomainSegments: 2, maxDomainSegments: 4 }).required().lowercase(),
     deadline: Joi.date(),
+    //headers
+    authorization: Joi.string().trim().required()
+
+}).options({ allowUnknown: true }).required()
+
+export const updateTaskStatus = Joi.object({
+    taskId: Joi.string().trim().required(),
+    status: Joi.string().trim().valid('ToDo', 'Doing', 'Done').default('ToDo'),
     //headers
     authorization: Joi.string().trim().required()
 

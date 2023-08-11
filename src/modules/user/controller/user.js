@@ -1,7 +1,8 @@
 import userModel from "../../../../DB/user/User.model.js";
 import { asyncHandler } from "../../../utils/errorHandling.js";
 import bcrypt from 'bcryptjs'
-import { doHashing } from "../../../encryption/encryption.js";
+import { decryptPhone, doHashing } from "../../../encryption/encryption.js";
+import cryptoJs from "crypto-js";
 
 const logOut = async (user) => {
     user.isOnline = false;
@@ -27,10 +28,27 @@ const getMyTasks = async (id) => {
     }).select("-__v -_id -password -phone");
 }
 
+export const getUserData = asyncHandler(
+    async (req, res, next) => {
+        const { _id } = req.user;
+        let user = await userModel.findById({ _id });
+        if (!user) {
+            return next(new Error("In-Valid User!", { cause: 401 }));
+        }
+        user = await decryptPhone(user);
+        return res.status(202).json({
+            message: "Done!",
+            user,
+            status: { cause: 202 }
+        })
+    }
+)
 
 export const changePassword = asyncHandler(
     async (req, res, next) => {
+        console.log("changePassword");
         const { password, _id } = req.user;
+
         const { oldPassword, newPassword } = req.body;
         const match = bcrypt.compareSync(oldPassword, password);
         if (match) {
@@ -48,10 +66,11 @@ export const changePassword = asyncHandler(
 export const updateUser = asyncHandler(
     async (req, res, next) => {
         const { _id } = req.user;
-        const { userName, age } = req.body;
-        const checkUser = await userModel.findOne({ userName });
+        let { userName, age, phone } = req.body;
+        const checkUser = await userModel.findOne({ userName, _id: { $ne: _id } });
         if (!checkUser) {
-            await userModel.findByIdAndUpdate({ _id }, { userName, age });
+            phone = cryptoJs.AES.encrypt(phone, process.env.ENCRYPT_PHONE_KEY).toString();
+            await userModel.findByIdAndUpdate({ _id }, { userName, age, phone });
             return res.status(202).json({
                 message: "Done!",
                 status: { cause: 202 }

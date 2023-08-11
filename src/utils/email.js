@@ -6,7 +6,6 @@ export const createMail = ({ protocol, host, createdToken, newConfirmEmailToken,
 
     if (newConfirmEmailToken) {
         const linkToCreate = `${protocol}://${host}/auth/newConfirmEmail/${newConfirmEmailToken}`;
-        const linkToUnsubscribe = `${protocol}://${host}/auth/unsubscribe/${unsubscribeToken}`;
         return `<!DOCTYPE html>
                 <html>
                 <head>
@@ -204,11 +203,11 @@ export const sendMail = async ({ from = process.env.EMAIL, to, subject, text, ht
     });
 
     const info = await transporter.sendMail({
-        from: `"TasksOrigizer" <${from}>`,
-        to,
-        subject,
-        text,
-        html,
+        from: `"Enhanced Trello" <${from}>`, // sender address
+        to, // "mahmoudsaid.r22@gmail.com", // list of receivers
+        subject, // "Hello ✔", // Subject line
+        text,// "Hello world?", // plain text body
+        html,// "<b>Hello world?</b>", // html body
         attachments
     });
 }

@@ -7,10 +7,10 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     age: { type: Number },
     gender: { type: String, default: "Male", enum: ["Male", "Female"] },
-    phone: { type: String, required: true, unique: true },
+    phone: { type: String, required: true},
     assignedTasks: [{ type: Types.ObjectId, ref: 'Task' }],
     createdTasks: [{ type: Types.ObjectId, ref: 'Task' }],
-    isOnline: { type: Boolean, required: true, default: false },
+    isOnline: { type: Boolean,default: false },
     deletedAt: { type: Date, default: null },
     confirmEmail: { type: Boolean, default: false }
 });
