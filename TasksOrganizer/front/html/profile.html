@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body>
+    <header>
+        <div id="navbar"></div>
+    </header>
+
+    <main id="main-container" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="../9368.jpg" alt="Profile Picture" class="profile-picture mb-3">
+                        <form>
+                            <div class="form-group">
+                                <label for="profile-picture-input">Profile Picture</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="profile-picture-input">
+                                    <label class="custom-file-label" for="profile-picture-input">Choose file</label>
+                                </div>
+                            </div>
+                        </form>
+                        <h4 id="userName-p" class="mb-0">Username</h4>
+                        <p id="email-p" class="text-muted">email@example.com</p>
+                        <!-- <button id="email-edit-btn" class="btn btn-primary btn-block" data-toggle="modal"
+                            data-target="#edit-email-modal">Edit Email</button> -->
+                        <button id="password-reset-btn" class="btn btn-secondary btn-block" data-toggle="modal"
+                            data-target="#reset-password-modal">Reset Password</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Personal Information</h4>
+                        <form>
+                            <div class="user-info">
+                                <div>
+                                    <label for="username">Username:</label>
+                                    <input type="text" id="username" value="" readonly>
+                                </div>
+                                <div>
+                                    <label for="phone">Phone:</label>
+                                    <input type="tel" id="phone" value="" readonly>
+                                </div>
+                                <div>
+                                    <label for="age">Age:</label>
+                                    <input type="number" id="age" value="" readonly>
+                                </div>
+                            </div>
+                            <button type="button" id="edit-btn" class="btn btn-primary btn-block" data-toggle="modal"
+                                data-target="#edit-personal-info-modal">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Modal for resetting password -->
+    <div class="modal fade" id="reset-password-modal" tabindex="-1" role="dialog"
+        aria-labelledby="reset-password-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reset-password-modal-label">Reset Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="current-password-input">Current Password</label>
+                            <input type="password" class="form-control" id="current-password-input"
+                                placeholder="Enter current password">
+                            <div id="currentPassword-error" class="feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password-input">New Password</label>
+                            <input type="password" class="form-control" id="new-password-input"
+                                placeholder="Enter new password">
+                            <div id="newPassword-error" class="feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password-input">Confirm New Password</label>
+                            <input type="password" class="form-control" id="confirm-password-input"
+                                placeholder="Confirm new password">
+                            <div id="cNewPassword-error" class="feedback"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="reset-password" type="button" class="btn btn-primary">Reset Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for editing personal information -->
+    <div class="modal fade" id="edit-personal-info-modal" tabindex="-1" role="dialog"
+        aria-labelledby="edit-personal-info-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-personal-info-modal-label">Edit Personal Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="userName-input">User Name</label>
+                            <input type="text" class="form-control" id="userName-input" placeholder="Enter User Name">
+                            <div id="userName-error" class="feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone-input">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone-input" placeholder="Enter phone number">
+                            <div id="phone-error" class="feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="age-input">Age</label>
+                            <input type="number" class="form-control" id="age-input" placeholder="Enter age">
+                            <div id="age-error" class="feedback"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="save-btn" type="button" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmLogOutPopup" class="popup">
+        <div class="popup-content">
+            <p>Are you sure you want to logOut?</p>
+            <button id="logOut-popup-btn-ok" class="popup-btn-ok">Yes</button>
+            <button class="popup-btn-cancel" onclick="cancelLogOutPopup()">Cancel</button>
+        </div>
+    </div>
+
+    <div id="spinner-container">
+        <svg id="spinner" viewBox="0 0 50 50">
+            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+    </div>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("navbar").innerHTML = data)
+            .then(() => {
+                if (isLoggedIn()) {
+                    // Show the "Profile" and "Logout" links
+                    document.getElementById("navbar-links").children[0].remove();
+                    document.getElementById("navbar-links").children[0].remove();
+                    document.getElementById("logout").addEventListener("click", confirmationLogOut);
+                } else {
+                    // Show the "Sign Up" and "Login" links
+                    document.getElementById("navbar-links").children[2].remove();
+                    document.getElementById("navbar-links").children[2].remove();
+                }
+                function isLoggedIn() {
+                    const token = localStorage.getItem('token');
+                    return token ? true : false;
+                }
+            });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+
+</html>
