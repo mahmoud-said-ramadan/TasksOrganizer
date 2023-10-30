@@ -2,16 +2,6 @@
 
 Welcome to the TasksOrganizer Application! This application allows you to manage your tasks and projects efficiently using boards, lists, and cards.
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Features](#features)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact Information](#contact-information)
-- [Acknowledgments](#acknowledgments)
 
 ## Installation
 To install the Trello-Like Application, follow these steps:
